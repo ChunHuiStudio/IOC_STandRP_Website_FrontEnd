@@ -1,0 +1,25 @@
+@page
+@model IndexModel
+
+@using System.Timers
+@using System.Threading
+@{
+	ViewData["Title"] = "主页";
+	string currentTime = DateTime.Now.ToString("HH:mm:ss");
+	Thread writ = new Thread(WriteTime);
+	writ.Start();
+
+	void WriteTime() {
+		while (true) {
+			currentTime=DateTime.Now.ToString("HH:mm:ss");
+			Thread.Sleep(1000);
+		}
+	}
+}
+
+<div class="text-center">
+	<h1 class="display-4">Welcome</h1>
+	<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<p>现在是 @currentTime </p>
